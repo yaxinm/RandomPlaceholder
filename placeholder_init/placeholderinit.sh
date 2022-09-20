@@ -4,20 +4,21 @@
 # first command line argument is the directory with the images
 # creates a file call placeholdermacros.tex
 
-# # =================== check if target exist ======================
-# if [ -f "placeholdermacros.tex" ] 
-# then
-#     echo "The file placeholdermacros.tex already exist."
-#     read -p "Do you want to overwrite? Type yes to overwrite, no to exit" OVERWRITE
-#     if [ $OVERWRITE != 'yes' ]; then exit 0; fi;
-    
-# fi
 
 # =================== variables ============================
 IMDIR=$1
 NUMOFFIG=$(ls $IMDIR | wc -l)
 DIRINIT=placeholder_init
 FILE=$DIRINIT/placeholdermacros.tex
+
+# # =================== check if target exist ======================
+if [ -f $FILE ] 
+then
+    # echo "The file placeholdermacros.tex already exist."
+    # read -p "Do you want to overwrite? Type yes to overwrite, no to exit" OVERWRITE
+    # if [ $OVERWRITE != 'yes' ]; then exit 0; fi;
+    exit 0
+fi
 
 # =================== write file =========================
 echo "% Define path to placeholder image directory" > $FILE
