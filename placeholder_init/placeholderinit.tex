@@ -1,0 +1,7 @@
+\makeatletter
+\def\app@exe{\immediate\write18}
+\def\placeholderinit#1{%
+    \app@exe{bash placeholder_init/placeholderinit.sh #1*}%
+    \input{placeholder_init/placeholdermacros.tex}
+}
+\makeatother
