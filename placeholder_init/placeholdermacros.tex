@@ -1,7 +1,19 @@
 % Define path to placeholder image directory
 \def\placeholderpath{placeholderimage}
-
-\expandafter\input{placeholderinit.tex}
+ 
+% setup new counter fignum
+\reinitrand[first=1, last=4, counter=fignum]
+ 
+% list of image
+\def\placeholderimage#1{
+    \ifcase#1\relax
+    \or\placeholderpath/dog-in-blanket.png
+    \or\placeholderpath/funny-giraff.jpg
+    \or\placeholderpath/funny-laughing-seals.jpg
+    \or\placeholderpath/space-holder.png
+    \fi
+}
+% \expandafter\input{placeholderinit.tex}
 % add a label if text is given, otherwise do nothing
 \def\addlabel#1{
     \ifx#1\relax

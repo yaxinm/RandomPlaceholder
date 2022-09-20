@@ -1,0 +1,22 @@
+% \expandafter\input{placeholderinit.tex}
+% add a label if text is given, otherwise do nothing
+\def\addlabel#1{
+    \ifx#1\relax
+        \relax
+    \else
+        \def\a{{#1}}
+        \expandafter\label\a
+    \fi
+}
+
+\newcommandx{\placeholder}[4][1=htb,2=\textwidth,3=\relax,4=\relax,usedefault=@]{
+    \rand\relax
+    \def\randomfig{{\arabic{fignum}}}
+    % \randomfig
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#2]{\expandafter\placeholderimage\randomfig}
+        \caption{#3}
+        \addlabel{#4}
+    \end{figure}
+}
