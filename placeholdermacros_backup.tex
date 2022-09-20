@@ -2,13 +2,14 @@
 \def\placeholderpath{placeholderimage}
  
 % setup new counter fignum
-\reinitrand[first=1, last=3, counter=fignum]
+\reinitrand[first=1, last=4, counter=fignum]
  
 % list of image
 \def\placeholderimage#1{
     \ifcase#1\relax
     \or\placeholderpath/dog-in-blanket.png
     \or\placeholderpath/funny-giraff.jpg
+    \or\placeholderpath/funny-laughing-seals.jpg
     \or\placeholderpath/space-holder.png
     \fi
 }

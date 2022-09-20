@@ -1,7 +1,40 @@
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{caption,subcaption}
+\usepackage[a4paper,top=2cm,bottom=2cm]{geometry}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{listings}
+\lstset{%
+  basicstyle=\small\ttfamily,
+  language=[LaTeX]{TeX},
+  commentstyle=\small\ttfamily
+}
 
+\usepackage{graphicx}
 \usepackage{lcg}
 \usepackage{xargs}
 \usepackage{float}
+
+\makeatletter
+\let\orig@item\item
+
+\def\item{%
+    \@ifnextchar{[}%
+        {\lstinline@item}%
+        {\orig@item}%
+}
+
+\begingroup
+\catcode`\]=\active
+\gdef\lstinline@item[{%
+    \setbox0\hbox\bgroup
+        \catcode`\]=\active
+        \let]\lstinline@item@end
+}
+\endgroup
+
+\def\lstinline@item@end{%
+    \egroup
+    \orig@item[\usebox0]%
+}
+
+\makeatother
