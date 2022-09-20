@@ -1,21 +1,3 @@
-% Define path to placeholder image directory
-\def\placeholderpath{placeholderimage}
-% variable fignum
-\reinitrand[first=1, last=4, counter=fignum]
-
-% Pick placeholder image
-\def\placeholderimage#1{
-    \ifcase#1
-        \relax
-    \or%
-        \placeholderpath/funny-giraff.jpg
-    \or%
-        \placeholderpath/funny-laughing-seals.jpg
-    \else
-        \placeholderpath/space-holder.png
-    \fi
-}
-
 % \expandafter\input{placeholderinit.tex}
 % add a label if text is given, otherwise do nothing
 \def\addlabel#1{
