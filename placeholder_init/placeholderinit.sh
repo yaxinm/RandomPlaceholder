@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# example: ./placeholderinit.sh placeholderimage/
+# example: ./placeholderinit.sh placeholderimage
 # first command line argument is the directory with the images
 # creates a file call placeholdermacros.tex
 
@@ -22,7 +22,7 @@ fi
 
 # =================== write file =========================
 echo "% Define path to placeholder image directory" > $FILE
-echo "\def\placeholderpath{placeholderimage}" >> $FILE
+echo "\def\placeholderpath{$IMDIR}" >> $FILE
 echo " " >> $FILE
 
 echo "% setup new counter fignum" >> $FILE
