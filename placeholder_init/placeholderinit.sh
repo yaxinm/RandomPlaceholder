@@ -33,12 +33,12 @@ echo "% list of image" >> $FILE
 echo "\def\placeholderimage#1{" >> $FILE
 echo "    \ifcase#1\relax" >> $FILE
 
-for i in `seq 1 $NUMOFFIG`
+for IMG in $(ls $IMDIR)
 do
-    FIG=$(ls $IMDIR | head -n $i | tail -n 1)
-    echo "    \or\placeholderpath/$FIG" >> $FILE
+    echo "    \or\placeholderpath/$IMG" >> $FILE
 done
+
 echo "    \fi" >> $FILE
 echo "}" >> $FILE
 
-(cat $DIRINIT/placeholderinit_part2.tex) >> $FILE
+echo "\input{$DIRINIT/placeholderinit_part2.tex}" >> $FILE
