@@ -1,4 +1,11 @@
-\makeatletter
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{randomplaceholder}[2022/10/05 Insert a random image as a placeholder.]
+
+\RequirePackage{graphicx}
+\RequirePackage{lcg}
+\RequirePackage{xargs}
+\RequirePackage{float}
+
 \def\app@exe{\immediate\write18}
 \def\placeholderinit#1{%
     \app@exe{bash placeholder_init/placeholderinit.sh #1}%
@@ -7,4 +14,5 @@
 \def\placeholderclean{%
     \app@exe{rm placeholder_init/placeholdermacros.tex}
 }
-\makeatother
+
+\endinput

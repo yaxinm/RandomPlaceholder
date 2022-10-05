@@ -4,4 +4,4 @@
 *.log
 *.synctex.gz
 
-.placeholder_init/placeholdermacros.tex
+placeholder_init/placeholdermacros.tex
