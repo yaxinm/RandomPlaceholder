@@ -8,7 +8,7 @@
 
 
 \def\bashmkmacro#1{
-    FILE=placeholdermacros.tex;
+    FILE=placeholdermacros.tmp;
     if [ -f $FILE ]; then exit 0; fi;
     printf "\\ def\\ placeholderpath{#1}" > $FILE;
     echo " " >> $FILE;
@@ -19,24 +19,18 @@
     for IMG in \expandafter$(ls #1); do echo "    \\ or\\ placeholderpath/$IMG" >> $FILE; done;
     echo "    \\ fi" >> $FILE;
     echo "}" >> $FILE;
-    % echo "\\ input{placeholderinit_part2.tex}" >> $FILE;
+    echo "\\ input{placeholderinit_part2.tex}" >> $FILE;
     sed -i 's/\\ /\\/g' $FILE;
     sed -i 's/##/\#/g' $FILE;
-    % echo "hi"
-}
-
-\def\bashtest#1{
-    printf "\\%s" "#1" > log
 }
 
 \def\app@exe{\immediate\write18}
 \def\placeholderinit#1{%
     \app@exe{\bashmkmacro{#1}}
-    \input{placeholdermacros.tex}
-    \input{placeholder_init/placeholderinit_part2.tex}
+    \input{placeholdermacros.tmp}
 }
 \def\placeholderclean{%
-    \app@exe{rm placeholdermacros.tex}
+    \app@exe{rm placeholdermacros.tmp}
 }
 
 \endinput
