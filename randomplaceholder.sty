@@ -6,13 +6,37 @@
 \RequirePackage{xargs}
 \RequirePackage{float}
 
+
+\def\bashmkmacro#1{
+    FILE=placeholdermacros.tex;
+    if [ -f $FILE ]; then exit 0; fi;
+    printf "\\ def\\ placeholderpath{#1}" > $FILE;
+    echo " " >> $FILE;
+    echo "\\ reinitrand[first=1, last=$(ls #1 | wc -l), counter=fignum]" >> $FILE;
+    echo " " >> $FILE;
+    echo "\\ def\\ placeholderimage##1{" >> $FILE;
+    echo "    \\ ifcase##1\\ relax" >> $FILE;
+    for IMG in \expandafter$(ls #1); do echo "    \\ or\\ placeholderpath/$IMG" >> $FILE; done;
+    echo "    \\ fi" >> $FILE;
+    echo "}" >> $FILE;
+    % echo "\\ input{placeholderinit_part2.tex}" >> $FILE;
+    sed -i 's/\\ /\\/g' $FILE;
+    sed -i 's/##/\#/g' $FILE;
+    % echo "hi"
+}
+
+\def\bashtest#1{
+    printf "\\%s" "#1" > log
+}
+
 \def\app@exe{\immediate\write18}
 \def\placeholderinit#1{%
-    \app@exe{bash placeholder_init/placeholderinit.sh #1}%
-    \input{placeholder_init/placeholdermacros.tex}
+    \app@exe{\bashmkmacro{#1}}
+    \input{placeholdermacros.tex}
+    \input{placeholder_init/placeholderinit_part2.tex}
 }
 \def\placeholderclean{%
-    \app@exe{rm placeholder_init/placeholdermacros.tex}
+    \app@exe{rm placeholdermacros.tex}
 }
 
 \endinput
