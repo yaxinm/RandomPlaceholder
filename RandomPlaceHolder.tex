@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{preamble}
 \usepackage{randomplaceholder}
-% \placeholderclean%
+\placeholderclean%
 \placeholderinit{placeholderimage}
 
 \title{randomplaceholder user manual}
@@ -10,10 +10,9 @@
 
 \begin{document}
     \maketitle
-    1
     Want to add bit of fun to your writing process?
     Insert a random image into your article by typing \lstinline{\placeholder}. 
-    \placeholder[@][0.3\textwidth][A random figure.]
+    \placeholder[][0.3\textwidth][A random figure.]
     \section{Supported platforms}
     \textbf{Unix} systems and \textbf{Overleaf}, compiled with pdfLaTex. 
     The package (not really a package, but I will call it as such) 
@@ -24,23 +23,34 @@
     \section{Installation}
     Installation is different for local \LaTeX~project or Overleaf.
 
-    \subsection{Add package to your project}
-    The folder \lstinline{placeholder_init} contains all source codes.
-    Copy it into your project, place it right next to your \lstinline{main.tex}. 
+    \subsection{Install package for one project}
+    Use this method for \textbf{Overleaf}.
+    Copy the content of the folder \lstinline{randomplaceholder} into your project, place the \lstinline{.sty} right next to your \lstinline{main.tex}. 
     
-    Then add this line to the top of your file.
+    \subsection{Install package for all local projects}
+    Copy the folder \lstinline{randomplaceholder} into your TeX home directory. On linux, using the default, you should copy \lstinline{randomplaceholder} into the directory \lstinline{~/texmf/tex/latex/}.
+
+    You can find your TeX home with the command \lstinline{kpsewhich -var-value=TEXMFHOME}.
+
+
+
+    \section{How to use}
+
+    \subsection{Usepackage}
+    Add this line to the top of your file.
     \begin{lstlisting}
-        \usepackage{placeholder_init/randomplaceholder}
+        \usepackage{randomplaceholder}
     \end{lstlisting}
 
     Now, prepare a folder full of fun images. Make sure that folder contains only images (any format) and the names of both the directory and the files follow the Unix naming conventions. For example, \lstinline{placeholderimage/} in this repo.
 
-    \section{How to use}
     \subsection{Initialise}
     Initialise the package by adding the following command at the top of your file.
     \begin{lstlisting}        
-        \placeholderinit{$YourImagefolder}
+        \placeholderinit{$YourImageFolder}
     \end{lstlisting}
+    \lstinline{$YourImageFolder} is a valid path to a directory, no space between the \{, \} and the path is allowed.
+    
     By running \lstinline{\placeholderinit}, a file containing the macros will be created base on the content of \lstinline{$YourImageFolder}. 
     Once the macro file is present, \lstinline{\placeholderinit} will not overwrite it even if the content of \lstinline{$YourImageFolder} has changed or if you recompile. 
     To reinitiate, call \lstinline{\placeholderclean} before calling \lstinline{\placeholderinit}.
@@ -52,12 +62,12 @@
     \section{Available commands}
     \begin{description}
         \item[\lstinline!\placeholderinit{#1}!] 
-        Initialise the randomplaceholder by creating a \linebreak \lstinline!placeholdermacros.tex! in the source directory. The command is skipped over if the macro file already exist.
+        Initialise the randomplaceholder by creating a \linebreak \lstinline!placeholdermacros.tmp! in the project directory. The command is skipped over if the macro file already exist.
             \begin{itemize}
                 \item[\lstinline!#1!] path to the folder with the space holder images. Only images should be present in the folder and names should follow the Unix conventions.
             \end{itemize}
-        \item[\lstinline!\placeholderclean!] Remove \lstinline!placeholdermacros.tex! so the package can be reinitialised to reflect changes 
-        \item[\lstinline!\placeholder[#1][#2][#3][#4]!] Insert a randomly selected image. Use \lstinline{@} to use default values.
+        \item[\lstinline!\placeholderclean!] Remove \lstinline!placeholdermacros.tmp! so the package can be reinitialised to reflect changes. 
+        \item[\lstinline!\placeholder[#1][#2][#3][#4]!] Insert a randomly selected image. Use a empty argument \lstinline{[]} to use default values.
             \begin{itemize}
                 \item[\lstinline{#1}] Optional, default=htb. Position of the figure, takes floating figure position specifiers.
                 \item[\lstinline{#2}] Optional, default=\lstinline{\textwidth}. Takes a width specifier.
@@ -68,7 +78,7 @@
             \begin{itemize}
                 \item[\lstinline{#1}] Optional, default=\lstinline{width=\textwidth}. Take key-value list for command \lstinline{\includegraphics} from the \lstinline{graphicx} package.
             \end{itemize}
-        \item[\lstinline!\placeholderimage{#1}!] Returns the name of the \lstinline{#1}\textsuperscript{th} image in the image folder. 
+        \item[\lstinline!\placeholderimage{#1}!] Returns the file name of the \lstinline{#1}\textsuperscript{th} image in the image folder. 
     \end{description}
 
     \section{Examples}
@@ -76,8 +86,8 @@
     \begin{lstlisting}
         \placeholder
         \placeholder[htb][5cm]
-        \placeholder[@][0.3\textwidth][The third argument is the caption]
-        \placeholder[@][0.3\textwidth][@][fig5]
+        \placeholder[][0.3\textwidth][The third argument is the caption]
+        \placeholder[][0.3\textwidth][][fig5]
         Reference figure 5 with \ref{fig5} 
         
         % or use a image in your own \begin{figure}
@@ -89,9 +99,9 @@
     \end{lstlisting}
     \placeholder%
     \placeholder[htb][5cm]
-    \placeholder[@][0.3\textwidth][The third argument is the caption]
-    \placeholder[@][0.5\textwidth][@][fig5]
-    Reference figure 5 as~\ref{fig5} 
+    \placeholder[][0.3\textwidth][The third argument is the caption]
+    \placeholder[][0.5\textwidth][][fig5]
+    Reference figure 5 with~\ref{fig5} 
     \begin{figure}
         \centering
         \includegraphics[width=0.3\textwidth]{\placeholderimage{2}}

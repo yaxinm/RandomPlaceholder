@@ -8,8 +8,8 @@
 # =================== variables ============================
 IMDIR=$1
 NUMOFFIG=$(ls $IMDIR | wc -l)
-DIRINIT=placeholder_init
-FILE=$DIRINIT/placeholdermacros.tex
+# DIRINIT=placeholder_init
+FILE=placeholdermacros.tmp
 
 # # =================== check if target exist ======================
 if [ -f $FILE ] 
@@ -41,4 +41,4 @@ done
 echo "    \fi" >> $FILE
 echo "}" >> $FILE
 
-echo "\input{$DIRINIT/placeholderinit_part2.tex}" >> $FILE
+# echo "\input{$DIRINIT/placeholderinit_part2.tex}" >> $FILE

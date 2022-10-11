@@ -3,5 +3,4 @@
 *.fls
 *.log
 *.synctex.gz
-
-placeholder_init/placeholdermacros.tex
+*.tmp
