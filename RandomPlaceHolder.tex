@@ -6,20 +6,24 @@
 
 \title{randomplaceholder user manual}
 \author{yaxinm}
-\date{September 2022}
+\date{11 October 2022}
 
 \begin{document}
     \maketitle
     Want to add bit of fun to your writing process?
     Insert a random image into your article by typing \lstinline{\placeholder}. 
     \placeholder[][0.3\textwidth][A random figure.]
+    
+    Project located at \url{https://github.com/yaxinm/RandomPlaceholder}.
+    
     \section{Supported platforms}
-    \textbf{Unix} systems and \textbf{Overleaf}, compiled with pdfLaTex. 
+    \textbf{Unix} systems and \textbf{Overleaf}, compiled with pdfLaTex.
     \textit{Shell-escape must be enabled.} Shell commands are used to gather the list of images.
 
     The package has been tested on Ubuntu 20.04 (x86\textunderscore64) and Overleaf.
     
     Sadly, it doesn't work on \textbf{Windows} yet.
+
 
     \section{Installation}
     Installation is different for local \LaTeX~project or Overleaf.
@@ -32,7 +36,6 @@
     Copy the folder \lstinline{randomplaceholder} into your TeX home directory. On linux, using the default, you should copy \lstinline{randomplaceholder} into the directory \lstinline{~/texmf/tex/latex/}.
 
     You can find your TeX home with the command \lstinline{kpsewhich -var-value=TEXMFHOME}.
-
 
 
     \section{How to use}
@@ -55,6 +58,16 @@
     By running \lstinline{\placeholderinit}, a file containing the macros will be created base on the content of \lstinline{$YourImageFolder}. 
     Once the macro file is present, \lstinline{\placeholderinit} will not overwrite it even if the content of \lstinline{$YourImageFolder} has changed or if you recompile. 
     To reinitiate, call \lstinline{\placeholderclean} before calling \lstinline{\placeholderinit}.
+
+    \subsubsection{Compatibility}
+    Not compatible with TeXLive~2021 or older.
+
+    If you want to use is with an incompatible version of \LaTeX, there is a workaround.
+    You can generate the required \lstinline{placeholdermacros.tmp} manually and add it to your project (also next to your \lstinline{main.tex}). 
+    Generate \lstinline{placeholdermacros.tmp} by running \lstinline{placeholderinit.sh} (located in \lstinline{_archive}) with the following command:
+    \begin{lstlisting}[language=bash]
+        bash placeholderinit.sh $YourImageFolder
+    \end{lstlisting}
 
     \subsection{Add a placeholder}
     Use \lstinline{\placeholder} to add a image randomly selected from \lstinline{$YourImageFolder}, no argument necessary. 
