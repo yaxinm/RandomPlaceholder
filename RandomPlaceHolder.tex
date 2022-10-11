@@ -15,9 +15,10 @@
     \placeholder[][0.3\textwidth][A random figure.]
     \section{Supported platforms}
     \textbf{Unix} systems and \textbf{Overleaf}, compiled with pdfLaTex. 
-    The package (not really a package, but I will call it as such) 
-    has been tested on Ubuntu 20.04 (x86\textunderscore64) and Overleaf.
+    \textit{Shell-escape must be enabled.} Shell commands are used to gather the list of images.
 
+    The package has been tested on Ubuntu 20.04 (x86\textunderscore64) and Overleaf.
+    
     Sadly, it doesn't work on \textbf{Windows} yet.
 
     \section{Installation}
@@ -78,7 +79,7 @@
             \begin{itemize}
                 \item[\lstinline{#1}] Optional, default=\lstinline{width=\textwidth}. Take key-value list for command \lstinline{\includegraphics} from the \lstinline{graphicx} package.
             \end{itemize}
-        \item[\lstinline!\placeholderimage{#1}!] Returns the file name of the \lstinline{#1}\textsuperscript{th} image in the image folder. 
+        \item[\lstinline!\placeholderimage{#1}!] You won't need this noramlly, but here it is: returns the file name of the \lstinline{#1}\textsuperscript{th} image in the image folder. 
     \end{description}
 
     \section{Examples}
@@ -102,10 +103,6 @@
     \placeholder[][0.3\textwidth][The third argument is the caption]
     \placeholder[][0.5\textwidth][][fig5]
     Reference figure 5 with~\ref{fig5} 
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.3\textwidth]{\placeholderimage{2}}
-    \end{figure}
     \begin{figure}
         \centering
         \includeplaceholder[width=5cm]

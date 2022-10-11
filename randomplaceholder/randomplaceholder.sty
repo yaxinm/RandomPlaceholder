@@ -26,13 +26,13 @@
 
 
 % ====================== initialisation =======================
-\def\app@exe{\immediate\write18}
+\def\randomplaceholder@exe{\immediate\write18}
 \def\placeholderinit#1{%
-    \app@exe{\bashmkmacro{#1}}
+    \randomplaceholder@exe{\bashmkmacro{#1}}
     \input{placeholdermacros.tmp}
 }
 \def\placeholderclean{%
-    \app@exe{rm placeholdermacros.tmp}
+    \randomplaceholder@exe{rm placeholdermacros.tmp}
 }
 
 % =================== in-document commands ===================
@@ -46,7 +46,7 @@
     \fi
 }
 
-\newcommandx{\placeholder}[4][1=htb,2=\textwidth,3=\relax,4=\relax,usedefault=@]{
+\newcommandx{\placeholder}[4][1=htb,2=\textwidth,3=\relax,4=\relax,usedefault]{
     \rand\relax
     \def\randomfig{{\arabic{fignum}}}
     \begin{figure}[#1]
