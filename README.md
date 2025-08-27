@@ -2,7 +2,7 @@
 LaTeX package.
 Available for locally installed LaTex on Unix systems and Overleaf. Tested on Ubuntu 20.04 x86_64 and Overleaf. 
 
-Not yet available for Windows. Not compatible with TeXLive 2021 or older.
+Not yet available for Windows. Last tested with TeXLive version 2024.
 
 ### Want to add bit of fun to your writing process? 
 Insert a random image into your article by typing `\placeholder`. 
